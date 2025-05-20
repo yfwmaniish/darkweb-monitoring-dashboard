@@ -1,0 +1,90 @@
+body {
+    background-color: #111;
+    color: #ccc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    color: #00ffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 30px;
+}
+
+.stats div {
+    background: #222;
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px #00ffff33;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+    vertical-align: top;
+}
+
+th {
+    background-color: #222;
+    color: #00ffff;
+}
+
+tr:hover {
+    background-color: #333;
+}
+
+.highlight {
+    background-color: yellow;
+    color: black;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.alert {
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+td.long-text {
+    max-width: 150px;
+    word-wrap: break-word;
+    font-size: 12px;
+}
+
+td.bitcoin {
+    max-width: 120px;
+    word-wrap: break-word;
+    font-size: 12px;
+}
+
+td.pgp {
+    text-align: center;
+}
+
+.btn {
+    background-color: #00ffff;
+    color: #111;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn:hover {
+    background-color: #00cccc;
+}

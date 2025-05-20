@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+*.sqlite3
+*.db
+venv/
+*.log
+*.session
+.idea/
+*.png
+*.jpg
+.DS_Store
+node_modules/

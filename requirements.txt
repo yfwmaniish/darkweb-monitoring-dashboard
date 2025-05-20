@@ -1,0 +1,7 @@
+flask
+requests[socks]
+beautifulsoup4
+lxml
+sqlalchemy
+pysocks
+stem

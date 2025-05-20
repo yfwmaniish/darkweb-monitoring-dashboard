@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="10">
+    <title>Decimal Darkweb Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .download-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #00ffff;
+            color: #111;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            float: right;
+            transition: background-color 0.3s ease;
+        }
+        .download-btn:hover {
+            background-color: #00cccc;
+            color: #fff;
+        }
+
+        .long-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+        .bitcoin {
+            color: #ff6600;
+        }
+
+        .pgp {
+            color: #00cc00;
+        }
+
+        .stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+
+        .stats > div {
+            background-color: #111;
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #00ffffa0;
+            text-align: center;
+            min-width: 150px;
+            color: #ddd;
+            font-weight: bold;
+        }
+
+        .stats > div h3 {
+            margin: 0 0 10px 0;
+            color: #00ffff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #121212;
+            color: #eee;
+        }
+
+        th, td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #222;
+            text-align: left;
+            font-family: monospace;
+        }
+
+        th {
+            color: #00ffff;
+        }
+
+        tr:hover {
+            background-color: #1a1a1a;
+        }
+
+        .tag {
+            background-color: #222;
+            color: #00ffff;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1 style="text-align:center; color:#00ffff; margin-bottom: 20px;">🚀 Decimal Darkweb Monitoring</h1>
+
+<div class="stats">
+    <div>
+        <h3>Total Sites Crawled</h3>
+        <p>{{ total_sites }}</p>
+    </div>
+    <div>
+        <h3>Total Alerts Found</h3>
+        <p>{{ total_alerts }}</p>
+    </div>
+</div>
+
+<div style="text-align: right; margin: 10px;">
+    <a href="{{ url_for('download_csv') }}" class="download-btn">📥 Download CSV</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>URL</th>
+            <th>Title</th>
+            <th>Email</th>
+            <th>Bitcoin</th>
+            <th>PGP Key</th>
+            <th>Matched Keywords</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td><a href="{{ item.url }}" target="_blank" style="color: #00ffff;">Link</a></td>
+            <td>{{ item.title|safe }}</td>
+            <td class="long-text">{{ item.email or '-' }}</td>
+            <td class="bitcoin">{{ item.bitcoin or '-' }}</td>
+            <td class="pgp">
+                {% if item.pgp_key %}
+                    🔑
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>
+                {% if item.keywords and item.keywords != ['-'] %}
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                        {% for kw in item.keywords %}
+                            <span class="tag">{{ kw }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
